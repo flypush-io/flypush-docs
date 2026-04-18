@@ -1,0 +1,46 @@
+/* FlyPush docs — dark theme customisation */
+
+:root {
+  --ifm-color-primary: #6366f1;
+  --ifm-color-primary-dark: #4f52e8;
+  --ifm-color-primary-darker: #4345e2;
+  --ifm-color-primary-darkest: #2e31d1;
+  --ifm-color-primary-light: #787af4;
+  --ifm-color-primary-lighter: #8486f5;
+  --ifm-color-primary-lightest: #a5a7f8;
+  --ifm-code-font-size: 93%;
+  --docusaurus-highlighted-code-line-bg: rgba(99, 102, 241, 0.15);
+  --ifm-font-family-base: "Inter", system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace: "JetBrains Mono", "Fira Code", monospace;
+}
+
+[data-theme="dark"] {
+  --ifm-background-color: #0f0f12;
+  --ifm-background-surface-color: #17171b;
+  --ifm-navbar-background-color: #0f0f12;
+  --ifm-footer-background-color: #0a0a0d;
+  --ifm-card-background-color: #17171b;
+  --ifm-toc-border-color: rgba(255, 255, 255, 0.07);
+  --ifm-hr-border-color: rgba(255, 255, 255, 0.07);
+}
+
+/* Navbar */
+.navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Code blocks */
+.theme-code-block {
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Admonitions */
+.alert {
+  border-radius: 10px;
+}
+
+/* Sidebar active item */
+.menu__link--active {
+  background: rgba(99, 102, 241, 0.12) !important;
+}
