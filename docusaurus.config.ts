@@ -25,7 +25,6 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           routeBasePath: "/",
           editUrl: "https://github.com/flypush-io/flypush-docs/tree/main/",
-          showLastUpdateTime: true,
         },
         blog: false,
         theme: { customCss: "./src/css/custom.css" },
