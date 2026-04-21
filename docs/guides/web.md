@@ -134,3 +134,36 @@ await flyPush.unregister(); // removes from browser + FlyPush
 | Firefox | 44+ | Full support |
 | Safari | 16.1+ | macOS Ventura + iOS 16.4+ |
 | Opera | 37+ | Full support |
+
+## Receiving missed messages
+
+If your app was closed or push was blocked, messages are queued server-side for up to 72 hours. Call `fetchMessages()` on page load to drain the queue:
+
+```typescript
+// On page load — catch any notifications missed while the tab was closed
+const messages = await flyPush.fetchMessages();
+for (const msg of messages) {
+  console.log(`[Missed] ${msg.title}: ${msg.body}`, msg.data);
+  // Show an in-app banner, badge, etc.
+}
+```
+
+Each call consumes the queue — messages are delivered once.
+
+## Why two keys?
+
+Web Push (VAPID) requires **two separate credentials**:
+
+| Key | Where to find it | Used by |
+|-----|-----------------|---------|
+| **API Key** (`apiKey`) | Dashboard → API Keys | Authenticates your app with the FlyPush API |
+| **VAPID Public Key** (`vapidPublicKey`) | Dashboard → Settings → Project | Used by the browser to verify push subscription belongs to you |
+
+The VAPID key pair is generated automatically by FlyPush per project. You only need the **public** key in your frontend code — the private key stays on FlyPush servers and is never exposed.
+
+```typescript
+const flyPush = new FlyPush({
+  apiKey: "fp_live_...",         // from API Keys page
+  vapidPublicKey: "BDx...",     // from Settings → Project → VAPID Public Key
+});
+```

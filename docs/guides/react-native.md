@@ -114,3 +114,78 @@ useFlyPush() → {
 - React Native 0.68+
 - iOS 14+
 - Android API 21+
+
+## Receiving missed messages
+
+When the app was closed or in the background, notifications may not have been received. Call `fetchMessages()` after the app comes to foreground to drain the server queue:
+
+```tsx
+import { fetchMessages } from "@flypush/react-native";
+import { AppState } from "react-native";
+
+// In App.tsx — check for missed messages when app becomes active
+AppState.addEventListener("change", async (state) => {
+  if (state === "active") {
+    const messages = await fetchMessages();
+    for (const msg of messages) {
+      console.log(`[Missed] ${msg.title}`, msg.data);
+      // Show in-app notification banner or badge
+    }
+  }
+});
+```
+
+Or with the hook:
+
+```tsx
+import { useFlyPush } from "@flypush/react-native";
+
+function App() {
+  const { fetchMessages } = useFlyPush();
+
+  useEffect(() => {
+    // Fetch on mount
+    fetchMessages().then((msgs) => {
+      if (msgs.length > 0) console.log(`${msgs.length} missed messages`);
+    });
+  }, []);
+}
+```
+
+Messages are consumed on each call — each message is delivered once.
+
+## API reference
+
+```typescript
+configure({ apiKey, baseUrl? })
+
+registerDevice({ token, userId?, tags? }) → Promise<string>
+
+setUserId(id: string) → Promise<void>
+setTags(tags: string[]) → Promise<void>
+subscribe(topic: string) → Promise<void>
+unsubscribe(topic: string) → Promise<void>
+unregister() → Promise<void>
+fetchMessages() → Promise<PushMessage[]>   // drain offline queue
+
+interface PushMessage {
+  notificationId: string;
+  title: string;
+  body: string;
+  imageUrl?: string;
+  data?: Record<string, unknown>;
+}
+
+// Hook
+useFlyPush() → {
+  deviceId: string | null,
+  isReady: boolean,
+  registerDevice,
+  setUserId,
+  setTags,
+  subscribe,
+  unsubscribe,
+  unregister,
+  fetchMessages,
+}
+```
