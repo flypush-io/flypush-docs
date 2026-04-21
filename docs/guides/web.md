@@ -100,6 +100,64 @@ flyPush.setTags(["premium", "us"]);
 await flyPush.subscribe("breaking-news");
 ```
 
+## 8. Foreground message handler
+
+When your tab is **open and focused**, FlyPush routes push events directly to your page instead of showing a system notification. Register a handler with `onMessage()`:
+
+```typescript
+flyPush.onMessage((message) => {
+  console.log("Push received in foreground:", message.title, message.body);
+  // Show an in-app toast, update a badge counter, etc.
+  showInAppBanner(message);
+});
+
+// Call init() after setting the handler
+await flyPush.init();
+```
+
+The `message` object shape:
+
+```typescript
+interface PushMessage {
+  notificationId: string;
+  title: string;
+  body: string;
+  imageUrl?: string;
+  data?: Record<string, unknown>;
+}
+```
+
+:::info How it works
+The service worker checks whether any tab with your app is currently focused. If yes, it forwards the push payload to the page via `postMessage` and skips the system notification. If no tab is focused, it falls back to a normal system notification.
+:::
+
+### React example — in-app toast
+
+```tsx
+import { useEffect, useRef } from "react";
+import { FlyPush } from "@flypush/web";
+
+export function useFlyPush() {
+  const fp = useRef<FlyPush | null>(null);
+
+  useEffect(() => {
+    fp.current = new FlyPush({
+      apiKey: import.meta.env.VITE_FLYPUSH_API_KEY,
+      vapidPublicKey: import.meta.env.VITE_FLYPUSH_VAPID_KEY,
+    });
+
+    fp.current.onMessage((msg) => {
+      // e.g. show a toast notification in your UI
+      toast(`${msg.title}: ${msg.body}`);
+    });
+
+    fp.current.init().catch(console.error);
+  }, []);
+
+  return fp;
+}
+```
+
 ## Notification payload
 
 FlyPush sends this JSON to the service worker's `push` event:
@@ -117,7 +175,7 @@ FlyPush sends this JSON to the service worker's `push` event:
 }
 ```
 
-Clicking the notification navigates to `data.url`.
+Clicking a system notification navigates to `data.url`.
 
 ## Unsubscribe
 

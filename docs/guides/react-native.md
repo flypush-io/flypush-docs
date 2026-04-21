@@ -59,6 +59,45 @@ async function setupPush() {
 If you want to use FlyPush's native Android WebSocket transport (no FCM), use the [Android SDK](/guides/android) directly in a native module or via the React Native Android SDK bridge (coming soon).
 :::
 
+## Handling messages in the foreground
+
+When the app is **open**, the OS delivers the push but your notification library controls whether to show a system alert. Use your library's foreground handler to intercept the message and show a custom in-app UI instead:
+
+```tsx
+// With @notifee/react-native
+import notifee, { EventType } from "@notifee/react-native";
+import messaging from "@react-native-firebase/messaging";
+
+// Register foreground handler (call in App.tsx)
+useEffect(() => {
+  // Intercept incoming push while app is in foreground
+  const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+    const { title, body } = remoteMessage.notification ?? {};
+    // Show an in-app banner instead of a system notification
+    showInAppBanner({ title, body, data: remoteMessage.data });
+  });
+
+  return unsubscribe;
+}, []);
+```
+
+Or with Notifee's event listener:
+
+```tsx
+useEffect(() => {
+  return notifee.onForegroundEvent(({ type, detail }) => {
+    if (type === EventType.PRESS) {
+      // User tapped notification while app was open
+      navigateTo(detail.notification?.data?.url as string);
+    }
+  });
+}, []);
+```
+
+:::tip
+`fetchMessages()` covers a different scenario — messages that arrived while the app was **completely closed** (no foreground handler running). Use both together for full coverage.
+:::
+
 ## useFlyPush hook
 
 ```tsx
