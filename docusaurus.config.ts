@@ -17,6 +17,19 @@ const config: Config = {
   onBrokenMarkdownLinks: "warn",
   i18n: { defaultLocale: "en", locales: ["en"] },
 
+  plugins: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        hashed: true,
+        language: ["en"],
+        indexDocs: true,
+        indexPages: true,
+        docsRouteBasePath: "/",
+      },
+    ],
+  ],
+
   presets: [
     [
       "classic",
@@ -43,7 +56,7 @@ const config: Config = {
         { type: "docSidebar", sidebarId: "docs", position: "left", label: "Docs" },
         { to: "/api-reference/authentication", position: "left", label: "API Reference" },
         { to: "/sdks/node", position: "left", label: "SDKs" },
-        { href: "https://flypush.io", label: "Dashboard", position: "right" },
+        { href: "https://dashboard.flypush.io", label: "Dashboard", position: "right" },
         { href: "https://github.com/flypush-io", label: "GitHub", position: "right" },
       ],
     },
@@ -78,18 +91,15 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `© ${new Date().getFullYear()} FlyPush. Built with Docusaurus.`,
+      copyright: `© ${new Date().getFullYear()} FlyPush, Inc. All rights reserved.`,
     },
     prism: {
       theme: prismThemes.dracula,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ["bash", "json", "kotlin", "swift", "python", "go", "php", "ruby"],
     },
-    algolia: {
-      appId: "PLACEHOLDER",
-      apiKey: "PLACEHOLDER",
-      indexName: "flypush",
-    },
+    // Search provided by @easyops-cn/docusaurus-search-local (no Algolia account needed)
+
   } satisfies Preset.ThemeConfig,
 };
 
