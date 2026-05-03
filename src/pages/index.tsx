@@ -1,4 +1,4 @@
-// Docs home page — redirects to quickstart
+// Docs home page - redirects to quickstart
 
 import { Redirect } from "@docusaurus/router";
 

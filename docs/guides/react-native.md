@@ -95,7 +95,7 @@ useEffect(() => {
 ```
 
 :::tip
-`fetchMessages()` covers a different scenario — messages that arrived while the app was **completely closed** (no foreground handler running). Use both together for full coverage.
+`fetchMessages()` covers a different scenario - messages that arrived while the app was **completely closed** (no foreground handler running). Use both together for full coverage.
 :::
 
 ## useFlyPush hook
@@ -162,7 +162,7 @@ When the app was closed or in the background, notifications may not have been re
 import { fetchMessages } from "@flypush/react-native";
 import { AppState } from "react-native";
 
-// In App.tsx — check for missed messages when app becomes active
+// In App.tsx - check for missed messages when app becomes active
 AppState.addEventListener("change", async (state) => {
   if (state === "active") {
     const messages = await fetchMessages();
@@ -191,7 +191,7 @@ function App() {
 }
 ```
 
-Messages are consumed on each call — each message is delivered once.
+Messages are consumed on each call - each message is delivered once.
 
 ## API reference
 

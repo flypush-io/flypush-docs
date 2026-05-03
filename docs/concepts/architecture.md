@@ -27,7 +27,7 @@ The fan-out worker cursor-paginates through matching device tokens in batches of
 - Creates a `NotificationJob` record
 - Enqueues a **send-batch job** (iOS/Android) or **web-push job** (Web)
 
-A send to "all devices" for a project with 10 million tokens creates 10,000 send-batch jobs — all processed in parallel.
+A send to "all devices" for a project with 10 million tokens creates 10,000 send-batch jobs - all processed in parallel.
 
 ### 3. Send-batch worker
 
@@ -39,7 +39,7 @@ A send to "all devices" for a project with 10 million tokens creates 10,000 send
 
 ### 4. Delivery receipts
 
-After each batch, the worker writes `DeliveryReceipt` rows — one per token with status `DELIVERED`, `FAILED`, or `PENDING` (Android WebSocket, awaiting ACK). Invalid tokens (`Unregistered`, `BadDeviceToken`) are marked with `invalidAt`.
+After each batch, the worker writes `DeliveryReceipt` rows - one per token with status `DELIVERED`, `FAILED`, or `PENDING` (Android WebSocket, awaiting ACK). Invalid tokens (`Unregistered`, `BadDeviceToken`) are marked with `invalidAt`.
 
 ## Multi-tenancy
 
@@ -49,7 +49,7 @@ API keys are stored as SHA-256 hashes. The raw key is shown once at creation tim
 
 ## Credential security
 
-APNS `.p8` keys and certificates are encrypted at rest with AES-256-GCM before storage. The encryption key lives only in the environment variable `CREDENTIAL_ENCRYPTION_KEY` — never in the database.
+APNS `.p8` keys and certificates are encrypted at rest with AES-256-GCM before storage. The encryption key lives only in the environment variable `CREDENTIAL_ENCRYPTION_KEY` - never in the database.
 
 ## Scaling
 

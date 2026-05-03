@@ -39,7 +39,7 @@ BullMQ processes `send_batch` jobs with configurable **concurrency**. With 100 w
 100 workers × 10 concurrency × 1,000 tokens/batch = 1,000,000 tokens/sec
 ```
 
-Each iOS batch invokes an **AWS Lambda** that sends to APNS in parallel. Lambda auto-scales to handle burst load — no capacity planning needed.
+Each iOS batch invokes an **AWS Lambda** that sends to APNS in parallel. Lambda auto-scales to handle burst load - no capacity planning needed.
 
 ### Step 4: Receipts written in bulk
 
@@ -67,17 +67,17 @@ BullMQ rate limiters cap throughput per subscription plan:
 | Pro | 10,000/sec (priority queue) |
 | Enterprise | Unlimited |
 
-Pro plan uses a **dedicated queue** — jobs never wait behind Free/Starter traffic.
+Pro plan uses a **dedicated queue** - jobs never wait behind Free/Starter traffic.
 
 ## Database at scale
 
 - Tokens table is partitioned by `project_id`
 - Delivery receipts are partitioned by `created_at` month, older partitions moved to cold storage
-- Analytics queries run against a **read replica** — never touch the primary
+- Analytics queries run against a **read replica** - never touch the primary
 - `device_tokens` has a compound index on `(project_id, platform, invalid_at)` for fast fan-out cursor queries
 
 ## WebSocket at scale
 
-The WebSocket server uses `uWebSockets.js` — a C++ backed WebSocket library that handles 100k+ concurrent connections on a single Node.js process with minimal memory overhead.
+The WebSocket server uses `uWebSockets.js` - a C++ backed WebSocket library that handles 100k+ concurrent connections on a single Node.js process with minimal memory overhead.
 
-Redis pub-sub delivers a single message per project — the WebSocket server fans it out to all connected clients locally. No per-device Redis calls.
+Redis pub-sub delivers a single message per project - the WebSocket server fans it out to all connected clients locally. No per-device Redis calls.

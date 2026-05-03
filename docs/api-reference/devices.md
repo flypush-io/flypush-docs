@@ -33,7 +33,7 @@ Called by your mobile/web SDK on first launch and whenever the token changes.
 |---|---|---|---|
 | `platform` | `IOS` \| `ANDROID` \| `WEB` | ✓ | Device platform |
 | `token` | string | ✓ | Raw APNS token (hex), FCM token, or Web Push subscription JSON |
-| `userId` | string | | Your user ID — links device to a user |
+| `userId` | string | | Your user ID - links device to a user |
 | `tags` | string[] | | Arbitrary tags for segmentation |
 | `metadata` | object | | Arbitrary key/value pairs (stored as JSON) |
 
@@ -50,7 +50,7 @@ Called by your mobile/web SDK on first launch and whenever the token changes.
 }
 ```
 
-If the token already exists, the record is **upserted** — metadata and tags are updated, `invalidAt` is cleared.
+If the token already exists, the record is **upserted** - metadata and tags are updated, `invalidAt` is cleared.
 
 ---
 

@@ -60,7 +60,7 @@ POST /v1/webhooks
 
 ## Signature verification
 
-Every webhook request includes an `X-FlyPush-Signature` header — an HMAC-SHA256 of the raw request body using your webhook secret.
+Every webhook request includes an `X-FlyPush-Signature` header - an HMAC-SHA256 of the raw request body using your webhook secret.
 
 ```typescript
 import crypto from "crypto";

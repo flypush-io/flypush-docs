@@ -10,7 +10,7 @@ sidebar_label: Python
 pip install flypush
 ```
 
-Zero dependencies — uses only the Python standard library. Requires Python 3.9+.
+Zero dependencies - uses only the Python standard library. Requires Python 3.9+.
 
 ## Initialize
 

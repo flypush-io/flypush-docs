@@ -6,7 +6,7 @@ sidebar_label: Android
 
 # Android Integration
 
-FlyPush delivers Android notifications via a **persistent WebSocket** — no FCM dependency. This gives you lower latency, no Google Play Services requirement, and full control over the transport layer.
+FlyPush delivers Android notifications via a **persistent WebSocket** - no FCM dependency. This gives you lower latency, no Google Play Services requirement, and full control over the transport layer.
 
 ## Prerequisites
 

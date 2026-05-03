@@ -10,7 +10,7 @@ sidebar_label: Go
 go get github.com/flypush-io/flypush-go
 ```
 
-Zero dependencies — uses only the Go standard library. Requires Go 1.21+.
+Zero dependencies - uses only the Go standard library. Requires Go 1.21+.
 
 ## Initialize
 

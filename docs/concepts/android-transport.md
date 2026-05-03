@@ -22,7 +22,7 @@ FlyPush's WebSocket works on any Android 5+ device with an internet connection.
 
 ### 2. Latency
 
-FCM adds a hop through Google's infrastructure. In practice this adds 100–500ms of latency. FlyPush delivers directly over the WebSocket — latency is just network RTT.
+FCM adds a hop through Google's infrastructure. In practice this adds 100–500ms of latency. FlyPush delivers directly over the WebSocket - latency is just network RTT.
 
 ### 3. Rate limits and quota
 
@@ -30,7 +30,7 @@ FCM has per-app and per-device rate limits that are opaque and hard to debug. Fl
 
 ### 4. Data privacy
 
-FCM routes your notification payloads through Google's servers. FlyPush routes directly from your infrastructure to the device — no third-party sees the data.
+FCM routes your notification payloads through Google's servers. FlyPush routes directly from your infrastructure to the device - no third-party sees the data.
 
 ## How FlyPush Android works
 

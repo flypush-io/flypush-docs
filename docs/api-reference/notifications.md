@@ -32,7 +32,7 @@ POST /v1/notifications/send
 
 | `to.type` | Fields | Description |
 |---|---|---|
-| `all` | — | All devices in the project |
+| `all` | - | All devices in the project |
 | `device` | `token` | Single device token |
 | `topic` | `topic` | All subscribers of a topic |
 | `segment` | `segmentId` | Devices matching a segment's rules |

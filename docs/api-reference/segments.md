@@ -6,7 +6,7 @@ sidebar_label: Segments
 
 # Segments
 
-Segments let you target devices based on rules — platform, tags, last activity, and more.
+Segments let you target devices based on rules - platform, tags, last activity, and more.
 
 ## Create a segment
 

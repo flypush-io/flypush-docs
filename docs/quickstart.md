@@ -11,7 +11,7 @@ FlyPush lets you send push notifications to iOS, Android, and Web from a single 
 
 ## 1. Create an account
 
-Sign up at [dashboard.flypush.io](https://dashboard.flypush.io) — no credit card required.
+Sign up at [dashboard.flypush.io](https://dashboard.flypush.io) - no credit card required.
 
 ## 2. Create a project
 

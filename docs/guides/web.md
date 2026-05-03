@@ -131,7 +131,7 @@ interface PushMessage {
 The service worker checks whether any tab with your app is currently focused. If yes, it forwards the push payload to the page via `postMessage` and skips the system notification. If no tab is focused, it falls back to a normal system notification.
 :::
 
-### React example — in-app toast
+### React example - in-app toast
 
 ```tsx
 import { useEffect, useRef } from "react";
@@ -198,7 +198,7 @@ await flyPush.unregister(); // removes from browser + FlyPush
 If your app was closed or push was blocked, messages are queued server-side for up to 72 hours. Call `fetchMessages()` on page load to drain the queue:
 
 ```typescript
-// On page load — catch any notifications missed while the tab was closed
+// On page load - catch any notifications missed while the tab was closed
 const messages = await flyPush.fetchMessages();
 for (const msg of messages) {
   console.log(`[Missed] ${msg.title}: ${msg.body}`, msg.data);
@@ -206,7 +206,7 @@ for (const msg of messages) {
 }
 ```
 
-Each call consumes the queue — messages are delivered once.
+Each call consumes the queue - messages are delivered once.
 
 ## Why two keys?
 
@@ -217,7 +217,7 @@ Web Push (VAPID) requires **two separate credentials**:
 | **API Key** (`apiKey`) | Dashboard → API Keys | Authenticates your app with the FlyPush API |
 | **VAPID Public Key** (`vapidPublicKey`) | Dashboard → Settings → Project | Used by the browser to verify push subscription belongs to you |
 
-The VAPID key pair is generated automatically by FlyPush per project. You only need the **public** key in your frontend code — the private key stays on FlyPush servers and is never exposed.
+The VAPID key pair is generated automatically by FlyPush per project. You only need the **public** key in your frontend code - the private key stays on FlyPush servers and is never exposed.
 
 ```typescript
 const flyPush = new FlyPush({
