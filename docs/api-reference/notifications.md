@@ -18,7 +18,7 @@ POST /v1/notifications/send
 
 ```json
 {
-  "to": { "type": "all" },
+  "target": { "type": "ALL" },
   "title": "Your order shipped!",
   "body": "It'll arrive by Friday.",
   "data": { "orderId": "abc123" },
@@ -30,18 +30,18 @@ POST /v1/notifications/send
 
 ### Target types
 
-| `to.type` | Fields | Description |
+| `target.type` | `target.value` | Description |
 |---|---|---|
-| `all` | - | All devices in the project |
-| `device` | `token` | Single device token |
-| `topic` | `topic` | All subscribers of a topic |
-| `segment` | `segmentId` | Devices matching a segment's rules |
+| `ALL` | - | All devices in the project |
+| `DEVICE` | device token string | Single device token |
+| `TOPIC` | topic name | All subscribers of a topic |
+| `SEGMENT` | segment ID | Devices matching a segment's rules |
 
 ### Full field reference
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `to` | object | ✓ | Delivery target |
+| `target` | object | ✓ | Delivery target (`type` + optional `value`) |
 | `title` | string | ✓ | Notification title |
 | `body` | string | ✓ | Notification body text |
 | `data` | object | | Custom JSON payload passed to the device |
@@ -65,7 +65,7 @@ curl -X POST https://api.flypush.io/v1/notifications/send \
   -H "Authorization: Bearer fp_your_api_key" \
   -H "Content-Type: application/json" \
   -d '{
-    "to": { "type": "topic", "topic": "breaking-news" },
+    "target": { "type": "TOPIC", "value": "breaking-news" },
     "title": "Breaking News",
     "body": "Something big just happened.",
     "data": { "url": "/news/story-456" }
@@ -88,12 +88,12 @@ Send multiple notifications with different targets or payloads in one call. Max 
 {
   "notifications": [
     {
-      "to": { "type": "device", "token": "tok_alice" },
+      "target": { "type": "DEVICE", "value": "tok_alice" },
       "title": "Hi Alice",
       "body": "Your report is ready."
     },
     {
-      "to": { "type": "device", "token": "tok_bob" },
+      "target": { "type": "DEVICE", "value": "tok_bob" },
       "title": "Hi Bob",
       "body": "Your report is ready."
     }
@@ -149,9 +149,7 @@ GET /v1/notifications/:id
 
 ## Topics {#topics}
 
-Devices subscribe to named topics. You can send to a topic with `to: { type: "topic", topic: "name" }`.
-
-Topics are created via the dashboard or the [Topics API](/api-reference/topics).
+Devices subscribe to named topics. Send to a topic with `target: { type: "TOPIC", value: "topic-name" }`. Topics are created via the dashboard or the [Topics API](/api-reference/topics).
 
 ---
 

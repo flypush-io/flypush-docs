@@ -64,7 +64,7 @@ const client = new FlyPush({ apiKey: "fp_your_api_key" });
 
 await client.notifications.send({
   to: { type: "all" },
-  title: "Hello from FlyPush! 🚀",
+  title: "Hello from FlyPush!",
   body: "Your first push notification just worked.",
 });
 ```
@@ -106,7 +106,7 @@ curl -X POST https://api.flypush.io/v1/notifications/send \
   -H "Authorization: Bearer fp_your_api_key" \
   -H "Content-Type: application/json" \
   -d '{
-    "to": { "type": "all" },
+    "target": { "type": "ALL" },
     "title": "Hello from FlyPush!",
     "body": "Your first push notification just worked."
   }'
