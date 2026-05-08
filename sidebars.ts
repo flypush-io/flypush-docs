@@ -33,8 +33,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Server SDKs",
-      items: ["sdks/node", "sdks/python", "sdks/go"],
+      label: "SDKs",
+      items: ["sdks/node", "sdks/web", "sdks/python", "sdks/go"],
     },
     {
       type: "category",

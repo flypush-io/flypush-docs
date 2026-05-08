@@ -215,7 +215,7 @@ Web Push (VAPID) requires **two separate credentials**:
 | Key | Where to find it | Used by |
 |-----|-----------------|---------|
 | **API Key** (`apiKey`) | Dashboard → API Keys | Authenticates your app with the FlyPush API |
-| **VAPID Public Key** (`vapidPublicKey`) | Dashboard → Settings → Project | Used by the browser to verify push subscription belongs to you |
+| **VAPID Public Key** (`vapidPublicKey`) | Dashboard → Project → Credentials | Used by the browser to verify push subscription belongs to you |
 
 The VAPID key pair is generated automatically by FlyPush per project. You only need the **public** key in your frontend code - the private key stays on FlyPush servers and is never exposed.
 
