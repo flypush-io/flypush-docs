@@ -85,13 +85,13 @@ const config: Config = {
           title: "Company",
           items: [
             { label: "Website", href: "https://flypush.io" },
-            { label: "Dashboard", href: "https://app.flypush.io" },
+            { label: "Dashboard", href: "https://dashboard.flypush.io" },
             { label: "Status", href: "https://status.flypush.io" },
-            { label: "Email", href: "mailto:hi@flypush.io" },
+            { label: "Email", href: "mailto:support@flypush.io" },
           ],
         },
       ],
-      copyright: `© ${new Date().getFullYear()} FlyPush, Inc. All rights reserved.`,
+      copyright: `© ${new Date().getFullYear()} Guli Labs Inc. All rights reserved. FlyPush is a product of Guli Labs Inc.`,
     },
     prism: {
       theme: prismThemes.dracula,
