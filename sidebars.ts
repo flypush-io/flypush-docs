@@ -34,7 +34,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "SDKs",
-      items: ["sdks/node", "sdks/web", "sdks/python", "sdks/go"],
+      items: ["sdks/node", "sdks/web", "sdks/ios", "sdks/python", "sdks/go"],
     },
     {
       type: "category",
